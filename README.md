@@ -16,6 +16,10 @@ There are a few options available to browserify-istanbul when you use it from Ja
 ```javascript
 var istanbul = require('browserify-istanbul');
 
+// use without any options...
+browserifyBundle.transform(istanbul);
+
+// or with some options...
 browserifyBundle.transform(istanbul({
   // ignore these glob paths (the ones shown are the defaults)
   ignore: ['**/node_modules/**', '**/test/**', '**/tests/**'],
