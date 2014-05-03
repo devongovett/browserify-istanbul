@@ -8,7 +8,7 @@ A [browserify](http://github.com/substack/node-browserify) transform for the [is
     
 ## Usage
 
-There are several ways to register browserify transforms: on the command line, in your `package.json`, or using the browserify API.  
+There are several ways to register browserify transforms: on the command line, in your `package.json`, or using the browserify API.
 You can use all of these with browserify-istanbul: see the [browserify docs](http://github.com/substack/node-browserify) for more info.
 
 There are a few options available to browserify-istanbul when you use it from JavaScript.  They are shown in the following code example:
