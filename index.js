@@ -6,7 +6,7 @@ var path = require('path');
 var instrumenter = new istanbul.Instrumenter();
 var defaultIgnore = ['**/node_modules/**', '**/test/**', '**/tests/**'];
 
-module.exports = function(options) {
+module.exports = function(options, extraOptions) {
   options = options || {};
   
   function transform(file) {
@@ -30,7 +30,7 @@ module.exports = function(options) {
       
   if (typeof options === 'string') {
     var file = options;
-    options = {};
+    options = extraOptions || {};
     return transform(file);
   }
   
