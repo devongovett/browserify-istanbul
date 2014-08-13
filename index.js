@@ -22,7 +22,11 @@ module.exports = function(options, extraOptions) {
     }, function() {
       var self = this;
       instrumenter.instrument(data, file, function(err, code) {
-        self.queue(code);
+        if (!err) {
+          self.queue(code);
+        } else {
+           self.emit('error', err);
+        }
         self.queue(null);
       });
     });
