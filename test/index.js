@@ -57,4 +57,15 @@ describe('browserify-istanbul', function() {
         done();
       });
   });
+  
+  it('should handle invalid .js', function(done) {
+      browserify(__dirname + '/../testdata/tests/invalid.js')
+          .transform(istanbul())
+          .bundle(function(err, src) {
+              assert.equal(typeof err, 'object');
+              assert.notEqual(err, null, 'Should emit error');
+              
+              done();
+          });
+  });
 });
