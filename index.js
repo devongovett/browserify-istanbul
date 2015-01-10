@@ -4,7 +4,7 @@ var minimatch = require('minimatch');
 var path = require('path');
 
 var instrumenter = new istanbul.Instrumenter();
-var defaultIgnore = ['**/node_modules/**', '**/test/**', '**/tests/**'];
+var defaultIgnore = ['**/node_modules/**', '**/test/**', '**/tests/**', '**/*.json'];
 
 module.exports = function(options, extraOptions) {
   options = options || {};
@@ -25,7 +25,7 @@ module.exports = function(options, extraOptions) {
         if (!err) {
           self.queue(code);
         } else {
-           self.emit('error', err);
+          self.emit('error', err);
         }
         self.queue(null);
       });
