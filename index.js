@@ -3,7 +3,6 @@ var through = require('through');
 var minimatch = require('minimatch');
 var path = require('path');
 
-var instrumenter = new istanbul.Instrumenter();
 var defaultIgnore = ['**/node_modules/**', '**/test/**', '**/tests/**', '**/*.json'];
 
 module.exports = function(options, extraOptions) {
@@ -15,7 +14,13 @@ module.exports = function(options, extraOptions) {
     
     if (ignore.some(minimatch.bind(null, file)))
       return through();
-    
+
+    var instrumenterConfig = {};
+    if (options.instrumenterConfig &&
+        typeof options.instrumenterConfig === 'object')
+      instrumenterConfig = options.instrumenterConfig;
+    var instrumenter = new istanbul.Instrumenter(instrumenterConfig);
+
     var data = '';
     return through(function(buf) {
       data += buf;
