@@ -14,11 +14,7 @@ module.exports = function(options, extraOptions) {
     if (ignore.some(minimatch.bind(null, file)))
       return through();
 
-    var instrumenterConfig = {};
-    if (options.instrumenterConfig &&
-        typeof options.instrumenterConfig === 'object')
-      instrumenterConfig = options.instrumenterConfig;
-    var instrumenter = new (options.instrumenter || istanbul).Instrumenter(instrumenterConfig);
+    var instrumenter = new (options.instrumenter || istanbul).Instrumenter(options.instrumenterConfig || {});
 
     var data = '';
     return through(function(buf) {
