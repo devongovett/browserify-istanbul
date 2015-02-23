@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/devongovett/browserify-istanbul",
   "dependencies": {
-    "through": "^2.3.4",
+    "istanbul": "~0.3.6",
     "minimatch": "^0.2.14",
-    "istanbul": "^0.2.8"
+    "through": "^2.3.4"
   },
   "devDependencies": {
     "browserify": "^3.46.0",
