@@ -2,7 +2,7 @@ var istanbul = require('istanbul');
 var through = require('through');
 var minimatch = require('minimatch');
 
-var defaultIgnore = ['**/node_modules/**', '**/test/**', '**/tests/**', '**/*.json'];
+var defaultIgnore = ['**/node_modules/**', '**/bower_components/**', '**/test/**', '**/tests/**', '**/*.json'];
 
 module.exports = function(options, extraOptions) {
   options = options || {};
