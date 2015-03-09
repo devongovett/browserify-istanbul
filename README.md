@@ -22,7 +22,7 @@ browserifyBundle.transform(istanbul);
 // or with some options...
 browserifyBundle.transform(istanbul({
   // ignore these glob paths (the ones shown are the defaults)
-  ignore: ['**/node_modules/**', '**/test/**', '**/tests/**'],
+  ignore: ['**/node_modules/**', '**/bower_components/**', '**/test/**', '**/tests/**', '**/*.json'],
   
   // by default, any paths you include in the ignore option are ignored 
   // in addition to the defaults. set the defaultIgnore option to false 
