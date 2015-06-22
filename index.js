@@ -1,4 +1,4 @@
-var istanbul = require('istanbul');
+var istanbul = require('babel-istanbul');
 var through = require('through');
 var minimatch = require('minimatch');
 
