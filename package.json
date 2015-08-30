@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/malandrew/browserify-babel-istanbul",
   "dependencies": {
-    "babel-istanbul": "^0.3.17",
+    "babel-istanbul": "git+ssh://git@github.com:rtsao/babel-istanbul.git",
     "minimatch": "^2.0.0",
     "through": "^2.3.4"
   },
