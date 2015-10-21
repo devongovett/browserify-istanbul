@@ -1,6 +1,6 @@
 {
   "name": "browserify-babel-istanbul",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A browserify transform for the babel-istanbul code coverage fork",
   "main": "index.js",
   "directories": {
