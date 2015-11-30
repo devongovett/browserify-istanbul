@@ -1,7 +1,7 @@
 {
-  "name": "browserify-istanbul",
-  "version": "0.2.1",
-  "description": "A browserify transform for the istanbul code coverage tool",
+  "name": "browserify-babel-istanbul",
+  "version": "0.2.4",
+  "description": "A browserify transform for the babel-istanbul code coverage fork",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,21 +11,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/devongovett/browserify-istanbul.git"
+    "url": "git://github.com/malandrew/browserify-babel-istanbul.git"
   },
   "keywords": [
     "browserify",
     "coverage",
-    "istanbul"
+    "istanbul",
+    "babel"
   ],
   "author": "Devon Govett <devongovett@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/devongovett/browserify-istanbul/issues"
+    "url": "https://github.com/malandrew/browserify-babel-istanbul/issues"
   },
-  "homepage": "https://github.com/devongovett/browserify-istanbul",
+  "homepage": "https://github.com/malandrew/browserify-babel-istanbul",
   "dependencies": {
-    "istanbul": "~0.3.6",
+    "babel-istanbul": "^0.3.20",
     "minimatch": "^2.0.0",
     "through": "^2.3.4"
   },

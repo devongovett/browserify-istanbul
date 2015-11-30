@@ -1,10 +1,12 @@
-# browserify-istanbul
+# browserify-babel-istanbul
+
+A fork of [browserify-istanbul](https://github.com/devongovett/browserify-istanbul) that uses babel-istanbul instead of vanilla istanbul.
 
 A [browserify](http://github.com/substack/node-browserify) transform for the [istanbul](https://github.com/gotwarlost/istanbul) code coverage tool.
 
 ## Installing
 
-    npm install browserify-istanbul
+    npm install browserify-babel-istanbul
     
 ## Usage
 
