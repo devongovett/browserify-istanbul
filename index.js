@@ -4,14 +4,20 @@ var minimatch = require('minimatch');
 
 var defaultIgnore = ['**/node_modules/**', '**/bower_components/**', '**/test/**', '**/tests/**', '**/*.json'];
 
+function shouldIgnoreFile(file, options) {
+  var ignore = options.defaultIgnore === false ? [] : defaultIgnore;
+  ignore = ignore.concat(options.ignore || []);
+
+  return ignore.some(function(pattern) {
+    return minimatch(file, pattern, options.minimatchOptions);
+  });
+}
+
 module.exports = function(options, extraOptions) {
   options = options || {};
 
   function transform(file) {
-    var ignore = options.defaultIgnore === false ? [] : defaultIgnore;
-    ignore = ignore.concat(options.ignore || []);
-
-    if (ignore.some(minimatch.bind(null, file)))
+    if (shouldIgnoreFile(file, options))
       return through();
 
     var instrumenter = new (options.instrumenter || istanbul).Instrumenter(options.instrumenterConfig || {});
