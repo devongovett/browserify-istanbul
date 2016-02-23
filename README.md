@@ -4,8 +4,8 @@ A [browserify](http://github.com/substack/node-browserify) transform for the [is
 
 ## Installing
 
-    npm install browserify-istanbul
-    
+    npm install --save-dev browserify-istanbul istanbul
+
 ## Usage
 
 There are several ways to register browserify transforms: on the command line, in your `package.json`, or using the browserify API.
@@ -23,13 +23,28 @@ browserifyBundle.transform(istanbul);
 browserifyBundle.transform(istanbul({
   // ignore these glob paths (the ones shown are the defaults)
   ignore: ['**/node_modules/**', '**/bower_components/**', '**/test/**', '**/tests/**', '**/*.json'],
-  
-  // by default, any paths you include in the ignore option are ignored 
-  // in addition to the defaults. set the defaultIgnore option to false 
+
+  // by default, any paths you include in the ignore option are ignored
+  // in addition to the defaults. set the defaultIgnore option to false
   // to only ignore the paths you specify.
   defaultIgnore: true
 }));
 ```
+
+### Command line
+
+- without options:
+
+```
+./node_modules/.bin/browserify -t browserify-istanbul test/test-*.js -o bundle.js
+```
+
+- with options
+
+```
+./node_modules/.bin/browserify -t [ browserify-istanbul --ignore "**/bower_components/**" ] test/test-*.js -o bundle.js
+```
+
 
 ## License
 
