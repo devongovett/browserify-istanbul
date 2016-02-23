@@ -1,6 +1,6 @@
 {
   "name": "browserify-istanbul",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "A browserify transform for the istanbul code coverage tool",
   "main": "index.js",
   "directories": {
