@@ -1,4 +1,3 @@
-var istanbul = require('istanbul');
 var through = require('through');
 var minimatch = require('minimatch');
 
@@ -20,7 +19,7 @@ module.exports = function(options, extraOptions) {
     if (shouldIgnoreFile(file, options))
       return through();
 
-    var instrumenter = new (options.instrumenter || istanbul).Instrumenter(options.instrumenterConfig || {});
+    var instrumenter = new (options.instrumenter || require('istanbul')).Instrumenter(options.instrumenterConfig || {});
 
     var data = '';
     return through(function(buf) {
