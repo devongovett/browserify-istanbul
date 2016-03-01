@@ -10,10 +10,10 @@ describe('browserify-istanbul', function() {
       .bundle(function(err, src) {
         if (err)
           return done(err);
-          
+
         var ctx = {};
         vm.runInNewContext(src, ctx);
-        
+
         assert.equal(typeof ctx.__coverage__, 'object');
         assert.equal(typeof ctx.__coverage__[require.resolve(__dirname + '/../testdata/src/file.js')], 'object');
         assert.equal(typeof ctx.__coverage__[require.resolve(__dirname + '/../testdata/src/ignored.js')], 'object');
@@ -21,17 +21,17 @@ describe('browserify-istanbul', function() {
         done();
       });
   });
-  
+
   it('should support ignore option in addition to default ignore option', function(done) {
     browserify(__dirname + '/../testdata/tests/file.js')
       .transform(istanbul({ ignore: ['**/ignored.js'] }))
       .bundle(function(err, src) {
         if (err)
           return done(err);
-          
+
         var ctx = {};
         vm.runInNewContext(src, ctx);
-        
+
         assert.equal(typeof ctx.__coverage__, 'object');
         assert.equal(typeof ctx.__coverage__[require.resolve(__dirname + '/../testdata/src/file.js')], 'object');
         assert.equal(typeof ctx.__coverage__[require.resolve(__dirname + '/../testdata/src/ignored.js')], 'undefined');
@@ -39,17 +39,17 @@ describe('browserify-istanbul', function() {
         done();
       });
   });
-  
+
   it('should support disabling defaultIgnore', function(done) {
     browserify(__dirname + '/../testdata/tests/file.js')
       .transform(istanbul({ ignore: ['**/ignored.js'], defaultIgnore: false }))
       .bundle(function(err, src) {
         if (err)
           return done(err);
-          
+
         var ctx = {};
         vm.runInNewContext(src, ctx);
-        
+
         assert.equal(typeof ctx.__coverage__, 'object');
         assert.equal(typeof ctx.__coverage__[require.resolve(__dirname + '/../testdata/src/file.js')], 'object');
         assert.equal(typeof ctx.__coverage__[require.resolve(__dirname + '/../testdata/src/ignored.js')], 'undefined');
@@ -57,15 +57,14 @@ describe('browserify-istanbul', function() {
         done();
       });
   });
-  
+
   it('should handle invalid .js', function(done) {
-      browserify(__dirname + '/../testdata/tests/invalid.js')
-          .transform(istanbul())
-          .bundle(function(err, src) {
-              assert.equal(typeof err, 'object');
-              assert.notEqual(err, null, 'Should emit error');
-              
-              done();
-          });
+    browserify(__dirname + '/../testdata/tests/invalid.js')
+      .transform(istanbul())
+      .bundle(function(err) {
+        assert.equal(typeof err, 'object');
+        assert.notEqual(err, null, 'Should emit error');
+        done();
+      });
   });
 });
