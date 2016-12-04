@@ -1,5 +1,6 @@
 var through = require('through');
 var minimatch = require('minimatch');
+var objectAssign = require('object-assign');
 
 var defaultIgnore = ['**/node_modules/**', '**/bower_components/**', '**/test/**', '**/tests/**', '**/*.json'];
 
@@ -29,7 +30,16 @@ function transform(options, file) {
   if (shouldIgnoreFile(file, options))
     return through();
 
-  var instrumenter = new (options.instrumenter || require('istanbul')).Instrumenter(options.instrumenterConfig || {});
+  var instrumenterConfig = objectAssign({}, {
+    autoWrap: true,
+    coverageVariable: '__coverage__',
+    embedSource: true,
+    noCompact: false,
+    preserveComments: true,
+    produceSourceMap: true
+  }, options.instrumenterConfig);
+
+  var instrumenter = (options.instrumenter || require('istanbul-lib-instrument')).createInstrumenter(instrumenterConfig);
 
   var data = '';
   return through(function(buf) {
