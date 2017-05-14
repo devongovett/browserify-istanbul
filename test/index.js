@@ -58,6 +58,25 @@ describe('browserify-istanbul', function() {
       });
   });
 
+  it('should allow stripping of leading paths off files', function(done) {
+    browserify(__dirname + '/../testdata/tests/file.js')
+      .transform(istanbul({ stripBasePath: true, ignore: ['**/browserify_istanbul/**'], defaultIgnore: false }))
+      .bundle(function(err, src) {
+        if (err)
+          return done(err);
+
+        var ctx = {};
+        vm.runInNewContext(src, ctx);
+
+        assert.equal(typeof ctx.__coverage__, 'object');
+        assert.equal(typeof ctx.__coverage__[require.resolve(__dirname + '/../testdata/src/file.js')], 'object');
+        assert.equal(typeof ctx.__coverage__[require.resolve(__dirname + '/../testdata/src/ignored.js')], 'object');
+        assert.equal(typeof ctx.__coverage__[require.resolve(__dirname + '/../testdata/browserify-istanbul/ignored.js')], 'undefined');
+        assert.equal(typeof ctx.__coverage__[require.resolve(__dirname + '/../testdata/tests/file.js')], 'object');
+        done();
+      });
+  });
+
   it('should handle invalid .js', function(done) {
     browserify(__dirname + '/../testdata/tests/invalid.js')
       .transform(istanbul())
