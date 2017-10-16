@@ -45,6 +45,16 @@ browserifyBundle.transform(istanbul({
 ./node_modules/.bin/browserify -t [ browserify-istanbul --ignore "**/bower_components/**" ] test/test-*.js -o bundle.js
 ```
 
+### Interacting With Coverage Reports
+
+To load and manipulate coverage reports, the command line tool [nyc](https://www.npmjs.com/package/nyc) can be used:
+
+1. output the the `__coverage__` object to `./.nyc_output/coverage.json`.
+  * this can be facilitated using a library like [mocha-phantomjs-istanbul](https://www.npmjs.com/package/mocha-phantomjs-istanbul).
+2. execute nyc with a list of [reporters](https://github.com/istanbuljs/istanbul-reports/tree/master/lib).
+  * `nyc report --reporter=lcov --reporter=text-summary`.
+
+See [istanbul.js.org](https://istanbul.js.org/) for more examples and documentation.
 
 ## License
 
