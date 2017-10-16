@@ -4,7 +4,7 @@ A [browserify](http://github.com/substack/node-browserify) transform for the [is
 
 ## Installing
 
-    npm install --save-dev browserify-istanbul istanbul
+    npm install --save-dev browserify-istanbul
 
 ## Usage
 
