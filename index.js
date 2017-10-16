@@ -7,6 +7,10 @@ var defaultIgnore = ['**/node_modules/**', '**/bower_components/**', '**/test/**
 function shouldIgnoreFile(file, options) {
   var ignore = options.defaultIgnore === false ? [] : defaultIgnore;
   ignore = ignore.concat(options.ignore || []);
+  var cwd = process.cwd();
+
+  if (options.stripBasePath)
+    file = file.replace(cwd, '');
 
   return ignore.some(function(pattern) {
     return minimatch(file, pattern, options.minimatchOptions);
