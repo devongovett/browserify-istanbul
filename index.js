@@ -1,6 +1,5 @@
 var through = require('through2');
 var minimatch = require('minimatch');
-var objectAssign = require('object-assign');
 
 var defaultIgnore = ['**/node_modules/**', '**/bower_components/**', '**/test/**', '**/tests/**', '**/*.json'];
 
@@ -30,7 +29,7 @@ function transform(options, file) {
   if (shouldIgnoreFile(file, options))
     return through();
 
-  var instrumenterConfig = objectAssign({}, {
+  var instrumenterConfig = Object.assign({}, {
     autoWrap: true,
     coverageVariable: '__coverage__',
     embedSource: true,
