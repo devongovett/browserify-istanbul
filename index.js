@@ -1,4 +1,4 @@
-var through = require('through');
+var through = require('through2');
 var minimatch = require('minimatch');
 var objectAssign = require('object-assign');
 
@@ -42,17 +42,19 @@ function transform(options, file) {
   var instrumenter = (options.instrumenter || require('istanbul-lib-instrument')).createInstrumenter(instrumenterConfig);
 
   var data = '';
-  return through(function(buf) {
+  return through(function(buf, enc, callback) {
     data += buf;
-  }, function() {
+    callback();
+  }, function(callback) {
     var self = this;
     instrumenter.instrument(data, file, function(err, code) {
       if (!err) {
-        self.queue(code);
+        self.push(code);
       } else {
         self.emit('error', err);
       }
-      self.queue(null);
+      self.push(null);
+      callback();
     });
   });
 }
